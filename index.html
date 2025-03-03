@@ -4,26 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <title>Prvočíslo</title>
+    <title>Document</title>
 </head>
 <body>
-    <!-- záhlaví obsahu webové stránky -->
-    <header class="w3-container w3-blue">
-        <h1>Prvočíslo</h1>
-    </header>
-    <!-- hlavní obsah webové stránky s formulářem a výstupem -->
-    <section class="w3-container">
-        <p>
-            <label for="txtCislo">Zadej číslo</label>
-            <input type="number" id="txtCislo" class="w3-input w3-border">
-            <button type="button" class="w3-button w3-blue w3-margin-top">Kontrola prvočísla</button>
-        </p>
-        <p id="pVysledek" class="w3-text-blue"></p>
-    </section>
-    <!-- patička obsahu webové stránky -->
-    <footer class="w3-container w3-blue">
-        &copy; 2024
-    </footer>
+    <main class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+        <h2>Kontrola prvočísla</h2>
+        <div class="w3-container">
+            <p>
+                <label>Zadejte číslo</label>
+                <input class="w3-input" type="text" id="cislo">
+            </p>
+            <p>
+                <button class="w3-button w3-blue">Zkontrolovat</button>
+            </p>
+            <p id="vysledek"></p>
+        </div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
