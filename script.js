@@ -1,35 +1,30 @@
-function jePrvocislo(vstup) {
-    let cislo = parseInt(vstup);
-    // pokud je číslo sudé nebo 1, tak to není prvočíslo
-    if (cislo % 2 === 0 || cislo===1) {
-        return cislo===2;  // pokud je číslo 2, tak je to prvočíslo, jinak ne (jediné sudé prvočíslo)
+function jePrvocislo(cislo) {
+    if (cislo<2) return false; // cislo je menší než 2 a pak není prvočíslem
+    if (cislo % 2 === 0) {
+        // cislo je sudé, tedy pravděpodobně není prvočíslem
+        return cislo === 2;  // pokud je to ale 2, pak prvočíslem
     }
-    let delitel = 3;  // začínáme od 3 s krokem 2 (lichá čísla), protože sudá čísla už jsme ošetřili
-    while (delitel <= Math.sqrt(cislo)) {
-        if (cislo % delitel === 0) {
-            // pokud se najde dělitel beze zbytku, tak číslo není prvočíslo
-            return false;
+    let i=3;
+    // testujeme i menší než druhá odmocnina zadaného čísla
+    while (i <= Math.sqrt(cislo)) {
+        if (cislo % i === 0) {  
+            return false;  // cislo je dělitelné i, tedy není prvočíslem
         }
-        delitel += 2;
+        i += 2; // zkoušíme jen lichá i
     }
     return true;
 }
 
-const txtCislo = document.querySelector('#txtCislo'); 
-// případně lze použít i document.getElementById('txtCislo');
+// odkazy na prvky stránky
 const tlacitko = document.querySelector('button');
-const pVysledek = document.querySelector('#pVysledek');
+const vstup = document.querySelector('#cislo');
+const vysledek = document.querySelector('#vysledek');
 
-// při kliknutí na tlačítko se zavolá událostní funkce
 tlacitko.onclick = function() {
-    let cislo = parseInt(txtCislo.value);  // přečtení hodnoty z textového pole a její převedení na číslo; pokud se nepodaří převést, tak výsledkem bude NaN
-    if (isNaN(cislo)) {
-        pVysledek.textContent = 'Musíš zadat číslo';
+    let cislo = parseInt(vstup.value);
+    if (isNaN(cislo)) {     // funkce isNaN vyhodnotí stav, kdy výsledkem převodu je neurčitá hodnota
+        vysledek.textContent = 'Neplatná hodnota';
     } else {
-        if (jePrvocislo(cislo)) {
-            pVysledek.textContent = 'Číslo je prvočíslo';
-        } else {
-            pVysledek.textContent = 'Číslo není prvočíslo';
-        }
+        vysledek.textContent = vstup.value + (jePrvocislo(cislo) ? ' je prvočíslo' : ' není prvočíslo');
     }
 }
